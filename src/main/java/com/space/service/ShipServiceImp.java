@@ -72,8 +72,7 @@ public class ShipServiceImp implements ShipService {
                               @RequestParam Optional<Integer> pageSize,
                               @RequestParam Optional<String> order) {
 
-        //long afterLong = after.map(aLong -> aLong - 3153602058L).orElse(1L);
-        long afterLong = after.orElse(1L);
+        long afterLong = after.map(aLong -> aLong - 3153602058L).orElse(1L);
 
         List<Ship> ships = shipRepository.findByNameIsContainingAndPlanetIsContainingAndProdDateIsBetweenAndCrewSizeIsBetweenAndSpeedIsBetweenAndRatingIsBetween(name.orElse(""), planet.orElse(""), new Date(afterLong), new Date(before.orElse(33104038201989L)), minCrewSize.orElse(0), maxCrewSize.orElse(9999), minSpeed.orElse(0.01), maxSpeed.orElse(0.99), minRating.orElse(0.0), maxRating.orElse(80.0));
         if (shipType.isPresent()) {
